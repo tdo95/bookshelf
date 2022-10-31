@@ -1,0 +1,28 @@
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+    <% if (locals.messages.errors) { %>
+        <% messages.errors.forEach( el => { %>
+            <div class="alert alert-danger"><%= el.msg %></div>
+        <% }) %>    
+    <% } %>
+    <% if (locals.messages.info) { %>
+        <% messages.info.forEach( el => { %>
+            <div class="alert alert-danger"><%= el.msg %></div>
+        <% }) %>    
+    <% } %>
+
+    <section class="flex login-section flex-align-center">
+      <div class="login-image-container">
+        <img src="assets/login-books.svg">
+      </div>
+      <div class="login-divider"></div>
+      <form class="login-form flex flex-column" action="/login" method="POST">
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <input type="submit">
+      </form>
+    </section>
+    
+</body>
+</html>

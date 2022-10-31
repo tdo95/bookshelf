@@ -1,0 +1,90 @@
+h1{
+    color: rgb(14, 25, 233);
+}
+.completed{
+    text-decoration: underline;
+}
+.not{
+    text-decoration: underline;
+}
+
+.book-cover {
+  max-height: 100px;
+}
+
+.search-result {
+  display: flex;
+}
+
+ul{
+  list-style-type: none;
+}
+
+/*Layout*/
+
+.todoItem {
+    list-style: none;
+}
+
+.btn btn-outline-dark me-2 {
+    list-style: none;
+}
+
+.section {
+  width: 500px;
+  margin-top: 50px;
+  text-align: center;
+  justify-content: center;
+}
+
+.flex {
+  display: flex;
+}
+.flex-align-center {
+  align-items: center;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.login-section {
+/*   width: 600px;
+  margin: 0 auto; */
+  width: 100%;
+  justify-content:center;
+}
+.login-section > * {
+  padding: 5%;
+}
+.login-form {
+  width: 45%
+  
+}
+.login-divider {
+  border: .5px solid rgb(32,37,41);
+  width: 0;
+  padding: 0;
+  height: 200px;
+}
+
+
+/*Text*/
+
+.title {
+    font-size: 50px;
+}
+
+/* Asset styling (images)  */
+.landing-img {
+  width: 50%;
+  height: auto;
+}
+.login-image-container {
+  width: 45%;
+}
+.login-image-container img {
+  width: 100%;
+}

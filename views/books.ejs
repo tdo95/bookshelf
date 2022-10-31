@@ -1,0 +1,60 @@
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/loggedInHeader') %>
+    <div class="container">
+    <h1>My Bookshelf</h1>
+      <h3>Welcome, <%= user.userName  %></h3>
+
+  <div class="divider"></div>
+  <div class="section">
+    
+    <h2>Books Currently Reading</h2>
+    <ul>
+      <!--       After updating the controller, the variable for this section should be booksUnread; can set class to 'not' w/o conditional logic -->
+<% books.forEach( el => { %>
+    <% if (el.completed===false){%>
+    <li class='bookItem' data-id='<%=el._id%>'>
+        <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.book %></span>
+        <span class='del'> Delete </span>
+    </li>
+<% }}) %>    
+    </ul>
+
+    <h2><%= user.userName %> is currently reading <%= left %> book(s).</h2>
+
+    <form action="/books/createBook" method='POST'>
+        <input type="text" placeholder="Enter Book Title" name='bookItem'>
+        <input type="submit">
+    </form>
+  </div>    
+
+  <div class="divider"></div>
+  <div class="section">
+      
+      <h2>Books Completed Reading</h2>
+      
+    <ul>
+      <!--       After updating the controller, the variable for this section should be booksRead; can set class to 'completed' w/o conditional logic -->
+      
+<% books.forEach( el => { %>
+ <% if (el.completed===true){%>
+    <li class='bookItem' data-id='<%=el._id%>'>
+        <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.book %></span>
+        <span class='del'> Delete </span>
+    </li>
+<%}})%>
+
+
+
+
+      
+    </ul>
+     
+  </div>
+
+
+   
+
+    <script src="js/main.js"></script>
+</body>
+</html>
