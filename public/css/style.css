@@ -11,9 +11,19 @@ h1{
 .book-cover {
   max-height: 100px;
 }
-
-.search-result {
+#match-list {
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 300px;
+  padding: 20px;
+  border: 2px solid black;
+}
+.search-result {
+  width: 20%;
+  padding: 1%;
+  display: flex;
+  flex-flow: column;
 }
 
 ul{
