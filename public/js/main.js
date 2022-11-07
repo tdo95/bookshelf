@@ -5,6 +5,9 @@ const search = document.getElementById('search')
 const matchList = document.getElementById('match-list')
 const searchResult = document.querySelectorAll('.search-result')
 const selectBook = document.querySelectorAll('.select-book')
+const modalTitle = document.querySelector('.modal-book-title')
+const modalImg = document.querySelector('.modal-book-img')
+const modalAuthors = document.querySelector('.modal-book-authors')
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteBook)
@@ -140,6 +143,9 @@ const addListenerToOptions = (matchList) => {
 
 function openModal() {
   const book = this;
+  modalImg.src = book.querySelector('img').src;
+  modalTitle.innerText = book.dataset.title;
+  modalAuthors.innerText = book.dataset.authors;
   console.log(book, 'has been clicked!');
 }
 
