@@ -117,12 +117,12 @@ const outputHtml = matches => {
     const html = matches.map(match => `
       <div class="search-result" 
       data-title="${match.title}" 
-      data-authors="${match.author_name}">
+      data-authors="${match.author_name ? match.author_name : 'N/A'}">
         <img src="https://covers.openlibrary.org/b/olid/${match.cover_edition_key}.jpg" alt="${match.title} Cover" class="book-cover">
         <div>
           <h4>${match.title}</h4>
           <span>
-            ${match.author_name ? match.author_name : console.log(match.title, 'is causing an error')}
+            ${match.author_name ? match.author_name : 'N/A'}
           </span>
         </div>
       </div>
