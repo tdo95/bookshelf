@@ -92,9 +92,13 @@ ul{
 }
 
 .modal-window {
+  display: flex;
   height: 300px;
   width: 300px;
   background-color: green;
+}
+.modal-book-img {
+  width: 50%;
 }
 
 /*Text*/
