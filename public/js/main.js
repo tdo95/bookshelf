@@ -23,12 +23,7 @@ Array.from(selectBook).forEach((el)=>{
 })
 
 search.addEventListener('input', () => searchBooks(search.value))
-
-Array.from(searchResult).forEach((el) => {
-  el.addEventListener('click', displayResult)
-})
-            
-                     
+                 
 
 async function deleteBook(){
   console.log('Event listener is working!')
@@ -120,18 +115,32 @@ const outputHtml = matches => {
   console.log('We have matches!')
   if (matches.length > 0) {
     const html = matches.map(match => `
-      <div class="search-result">
+      <div class="search-result" 
+      data-title="${match.title}" 
+      data-authors="${match.author_name}">
         <img src="https://covers.openlibrary.org/b/olid/${match.cover_edition_key}.jpg" alt="${match.title} Cover" class="book-cover">
         <div>
           <h4>${match.title}</h4>
-          <span>${match.author_name}</span>
+          <span>
+            ${match.author_name ? match.author_name : console.log(match.title, 'is causing an error')}
+          </span>
         </div>
       </div>
     `
     ).join('')
 
     matchList.innerHTML = html
+    addListenerToOptions(matchList);
   }
+}
+
+const addListenerToOptions = (matchList) => {
+  matchList.childNodes.forEach(option => option.addEventListener('click', openModal));
+}
+
+function openModal() {
+  const book = this;
+  console.log(book, 'has been clicked!');
 }
 
 // const displayResult = 
