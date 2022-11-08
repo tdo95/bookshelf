@@ -83,21 +83,21 @@ ul{
 /* Modal Screen Styles */
 
 .modal-screen {
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* top: 0; */
-  height: 500px;
-  width: 500px;
+  top: 0;
+  height: 100%;
+  width: 100%;
   border: pink solid 4px;
 }
 
 .modal-window {
   position: relative;
   display: flex;
-  height: 300px;
-  width: 300px;
+  height: 500px;
+  width: 500px;
   background-color: green;
 }
 .modal-book-img {
