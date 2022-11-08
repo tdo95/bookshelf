@@ -149,7 +149,7 @@ function openModal() {
   modalImg.src = this.querySelector('img').src;
   modalTitle.innerText = this.dataset.title;
   modalAuthors.innerText = this.dataset.authors;
-  console.log(book, 'has been clicked!');
+  console.log(this, 'has been clicked!');
 
   //unhide modal
   modalScreen.classList.remove('hidden');
