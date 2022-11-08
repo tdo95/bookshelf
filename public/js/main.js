@@ -8,6 +8,8 @@ const selectBook = document.querySelectorAll('.select-book')
 const modalTitle = document.querySelector('.modal-book-title')
 const modalImg = document.querySelector('.modal-book-img')
 const modalAuthors = document.querySelector('.modal-book-authors')
+const modalCloseButton = document.querySelector('.modal-close-button')
+const modalScreen = document.querySelector('.modal-screen')
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteBook)
@@ -26,7 +28,8 @@ Array.from(selectBook).forEach((el)=>{
 })
 
 search.addEventListener('input', () => searchBooks(search.value))
-                 
+
+modalCloseButton.addEventListener('click', closeModal)
 
 async function deleteBook(){
   console.log('Event listener is working!')
@@ -142,12 +145,24 @@ const addListenerToOptions = (matchList) => {
 }
 
 function openModal() {
-  const book = this;
-  modalImg.src = book.querySelector('img').src;
-  modalTitle.innerText = book.dataset.title;
-  modalAuthors.innerText = book.dataset.authors;
+  //add values
+  modalImg.src = this.querySelector('img').src;
+  modalTitle.innerText = this.dataset.title;
+  modalAuthors.innerText = this.dataset.authors;
   console.log(book, 'has been clicked!');
+
+  //unhide modal
+  modalScreen.classList.remove('hidden');
 }
 
-// const displayResult = 
+function closeModal() {
+  //clear previous values
+  modalImg.src = "";
+  modalTitle.innerText = "";
+  modalAuthors.innerText = "";
+
+  //hide modal
+  modalScreen.classList.add('hidden');
+}
+
 
