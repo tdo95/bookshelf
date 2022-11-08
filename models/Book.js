@@ -13,11 +13,11 @@ const BookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-    picture: {
+  picture: {
     type: String,
     required: false
   },
-    author: {
+  author: {
     type: String,
     required: false
   }
