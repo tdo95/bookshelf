@@ -10,6 +10,7 @@ const modalImg = document.querySelector('.modal-book-img')
 const modalAuthors = document.querySelector('.modal-book-authors')
 const modalCloseButton = document.querySelector('.modal-close-button')
 const modalScreen = document.querySelector('.modal-screen')
+const addToLibraryButton = document.querySelector('#add-button')
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteBook)
@@ -30,6 +31,8 @@ Array.from(selectBook).forEach((el)=>{
 search.addEventListener('input', () => searchBooks(search.value))
 
 modalCloseButton.addEventListener('click', closeModal)
+
+addToLibraryButton.addEventListener('click', addBook)
 
 async function deleteBook(){
   console.log('Event listener is working!')
@@ -84,6 +87,43 @@ async function markIncomplete(){
     }catch(err){
         console.log(err)
     }
+}
+async function addBook() {
+  //collection book information
+  let bookName = modalTitle.innerText.trim();
+  let bookImage = modalImg.src.trim();
+  let bookAuthors = modalAuthors.innerText.split(',');
+  
+  //check if link is undefined
+  if (bookImage.slice(-13) === 'undefined.jpg') {
+    bookImage = null;
+  }
+  //check if there is no author
+  else if (bookAuthors[0] === 'N/A') {
+    bookAuthors = null;
+  }
+  console.log(JSON.stringify({
+    bookAuthors,
+    bookImage,
+    bookName
+}))
+  //Submit to database
+  try{
+    const response = await fetch('books/createBook', {
+        method: 'post',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify({
+            bookAuthors,
+            bookImage,
+            bookName
+        })
+    })
+    const data = await response.json()
+    console.log(data)
+    location.reload()
+  }catch(err){
+    console.log(err)
+  }
 }
 
 const searchBooks = async searchText => {
