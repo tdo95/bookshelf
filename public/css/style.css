@@ -80,6 +80,8 @@ ul{
   height: 200px;
 }
 
+/* Modal Screen Styles */
+
 .modal-screen {
   position: absolute;
   display: flex;
@@ -92,6 +94,7 @@ ul{
 }
 
 .modal-window {
+  position: relative;
   display: flex;
   height: 300px;
   width: 300px;
@@ -101,7 +104,12 @@ ul{
   width: 50%;
 }
 
-/*Text*/
+.modal-close-button {
+  position: absolute;
+  right: 0;
+}
+
+/* Text */
 
 .title {
     font-size: 50px;
@@ -117,4 +125,8 @@ ul{
 }
 .login-image-container img {
   width: 100%;
+}
+
+.hidden {
+  display: none;
 }
