@@ -13,10 +13,11 @@ module.exports = {
         }
     },
     createBook: async (req, res)=>{
+        console.log(req.body)
         try{
-            await Book.create({book: req.body.bookItem, completed: false, userId: req.user.id})
+            await Book.create({book: req.body.bookName, completed: false, userId: req.user.id, picture: req.body.bookImage, author: req.body.bookAuthors})
             console.log('A new book has been added!')
-            res.redirect('/books')
+            res.json({success: 'Book added'})
         }catch(err){
             console.log(err)
         }
