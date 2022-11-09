@@ -2,11 +2,11 @@
     <section class="modal-window">
         <button class="modal-close-button">close</button>
         <p class="error-message"></p>
-        <form action="">
+        <form action="books/createBook" method="POST">
             <label for="title">Book Title</label>
-            <input type="text" name="title">
+            <input type="text" name="bookName" required>
             <label for="author">Book Authors</label>
-            <input type="text" name="author">
+            <input type="text" name="bookAuthors" required>
             <button>Add Book</button>
         </form>
 
