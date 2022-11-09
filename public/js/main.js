@@ -132,7 +132,7 @@ const searchBooks = async searchText => {
   const res = await fetch(`https://openlibrary.org/search.json?q=${searchText}`)
   const books = await res.json()
 
-  let matches = books.docs
+  let matches = books.docs.slice(0, 10);
 
   if (searchText.length == 0) {
     matches = []
