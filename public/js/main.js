@@ -180,9 +180,11 @@ const outputHtml = matches => {
     `
     ).join('')
 
-    matchList.innerHTML = html
+    const addButtonAndPrompt = `<section class="manuel-add"><p class="add-new-book-prompt">Don't see the book your looking for? Add it!</p>
+    <button class="add-new-book">Add Book</button></section>`
+    
+    matchList.innerHTML = `${html} ${addButtonAndPrompt}`
     addListenerToOptions(matchList);
-    unhideManualAddButtonAndPrompt()
   }
 }
 
@@ -211,8 +213,3 @@ function closeModal() {
   modalScreen.classList.add('hidden');
 }
 
-function unhideManualAddButtonAndPrompt() {
-  document.querySelector('.add-new-button').classList.remove('hidden');
-  document.querySelector('.add-new-button-prompt').classList.remove('hidden');
-
-}
