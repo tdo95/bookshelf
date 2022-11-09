@@ -8,9 +8,12 @@ const selectBook = document.querySelectorAll('.select-book')
 const modalTitle = document.querySelector('.modal-book-title')
 const modalImg = document.querySelector('.modal-book-img')
 const modalAuthors = document.querySelector('.modal-book-authors')
-const modalCloseButton = document.querySelector('.modal-close-button')
-const modalScreen = document.querySelector('.modal-screen')
+const modalCloseButton = document.querySelectorAll('.modal-close-button')
+const modalScreenInfo = document.querySelector('.modal-screen.info')
+const modalScreenInput = document.querySelector('.modal-screen.input')
 const addToLibraryButton = document.querySelector('#add-button')
+const manuelAddSection = document.querySelector('.manuel-add')
+const addNewButton = document.querySelector('.add-new-book')
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteBook)
@@ -35,9 +38,13 @@ search.addEventListener('input', () => {
   timeout = setTimeout(async () => await searchBooks(search.value), 500); 
 })
 
-modalCloseButton.addEventListener('click', closeModal)
+modalCloseButton.forEach(button => {
+  button.addEventListener('click', closeModal);
+})
 
 addToLibraryButton.addEventListener('click', addBook)
+
+addNewButton.addEventListener('click', openModal)
 
 async function deleteBook(){
   console.log('Event listener is working!')
@@ -123,9 +130,8 @@ async function addBook() {
             bookName
         })
     })
-    const data = await response.json()
-    console.log(data)
-    location.reload()
+    
+    window.location.href = "/books"
   }catch(err){
     console.log(err)
   }
@@ -142,6 +148,7 @@ const searchBooks = async searchText => {
   if (searchText.length == 0) {
     matches = []
     matchList.innerHTML = ''
+    return;
   }
 
   // storeSearchResults(matches)
@@ -180,11 +187,10 @@ const outputHtml = matches => {
     `
     ).join('')
 
-    const addButtonAndPrompt = `<section class="manuel-add"><p class="add-new-book-prompt">Don't see the book your looking for? Add it!</p>
-    <button class="add-new-book">Add Book</button></section>`
-    
-    matchList.innerHTML = `${html} ${addButtonAndPrompt}`
+    matchList.innerHTML = html;
     addListenerToOptions(matchList);
+    manuelAddSection.classList.remove('hidden')
+    
   }
 }
 
@@ -193,23 +199,31 @@ const addListenerToOptions = (matchList) => {
 }
 
 function openModal() {
-  //add values
+  if (this.classList.contains('search-result')) {
+    //add values
   modalImg.src = this.querySelector('img').src;
   modalTitle.innerText = this.dataset.title;
   modalAuthors.innerText = this.dataset.authors;
   console.log(this, 'has been clicked!');
+  //unhide info modal
+  modalScreenInfo.classList.remove('hidden');
 
-  //unhide modal
-  modalScreen.classList.remove('hidden');
+  }
+  else modalScreenInput.classList.remove('hidden');
+  
 }
 
 function closeModal() {
+  console.log(this, this.parentNode)
+  if (this.parentNode.parentNode.classList.contains('info')) {
   //clear previous values
   modalImg.src = "";
   modalTitle.innerText = "";
   modalAuthors.innerText = "";
+  //hide info modal
+  modalScreenInfo.classList.add('hidden');
 
-  //hide modal
-  modalScreen.classList.add('hidden');
+  } 
+  else modalScreenInput.classList.add('hidden');
 }
 
