@@ -28,7 +28,12 @@ Array.from(selectBook).forEach((el)=>{
   el.addEventListener('click', addBook)
 })
 
-search.addEventListener('input', () => searchBooks(search.value))
+let timeout;
+search.addEventListener('input', () => {
+  //displays results 500 milliseconds after input has stopped coming in
+  if (timeout) clearTimeout(timeout); 
+  timeout = setTimeout(async () => await searchBooks(search.value), 500); 
+})
 
 modalCloseButton.addEventListener('click', closeModal)
 
