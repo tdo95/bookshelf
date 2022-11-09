@@ -182,6 +182,7 @@ const outputHtml = matches => {
 
     matchList.innerHTML = html
     addListenerToOptions(matchList);
+    unhideManualAddButtonAndPrompt()
   }
 }
 
@@ -210,4 +211,8 @@ function closeModal() {
   modalScreen.classList.add('hidden');
 }
 
+function unhideManualAddButtonAndPrompt() {
+  document.querySelector('.add-new-button').classList.remove('hidden');
+  document.querySelector('.add-new-button-prompt').classList.remove('hidden');
 
+}
