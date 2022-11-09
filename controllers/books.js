@@ -17,7 +17,7 @@ module.exports = {
         try{
             await Book.create({book: req.body.bookName, completed: false, userId: req.user.id, picture: req.body.bookImage, author: req.body.bookAuthors})
             console.log('A new book has been added!')
-            res.json({success: 'Book added'})
+            res.redirect('/books')
         }catch(err){
             console.log(err)
         }
