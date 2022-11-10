@@ -6,7 +6,7 @@
 
     <section class="greeting">
       <h2>Welcome, <%= user.userName[0].toUpperCase() + user.userName.slice(1)  %></h2>
-      <h5>You currently reading <%= left %> <%= left === 1 ? 'book' : 'books' %>.</h5>
+      <h5>You currently reading <span class="yellow-text"><%= left %></span> <%= left === 1 ? 'book' : 'books' %>.</h5>
     </section>
     
     <div class="divider"></div>

@@ -150,6 +150,9 @@ ul{
 .title {
     font-size: 50px;
 }
+.yellow-text {
+  color: goldenrod;
+}
 
 /* Asset styling (images)  */
 .landing-img {
