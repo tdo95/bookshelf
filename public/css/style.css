@@ -113,6 +113,16 @@ ul{
 }
 
 /* Bookshelf Page */
+
+.greeting {
+  display: flex;
+  width: 100%;
+}
+
+.greeting h5 {
+  margin-left: auto;
+}
+
 .book-section {
   display: flex;
   width: 100%;

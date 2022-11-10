@@ -3,8 +3,11 @@
   <%- include('../partials/loggedInHeader') %>
     <div class="container">
     <h1>My Shelf</h1>
-    <h3>Welcome, <%= user.userName[0].toUpperCase() + user.userName.slice(1)  %></h3>
-    <span>You currently reading <%= left %> <%= left === 1 ? 'book' : 'books' %>.</span>
+    <section class="greeting">
+      <h2>Welcome, <%= user.userName[0].toUpperCase() + user.userName.slice(1)  %></h2>
+      <h5>You currently reading <%= left %> <%= left === 1 ? 'book' : 'books' %>.</h5>
+    </section>
+    
 
   <div class="divider"></div>
   <div class="">
@@ -25,13 +28,6 @@
       <!--       After updating the controller, the variable for this section should be booksUnread; can set class to 'not' w/o conditional logic -->
   
     </ul>
-
-    
-
-    <!-- <form action="/books/createBook" method='POST'>
-        <input type="text" placeholder="Enter Book Title" name='bookItem'>
-        <input type="submit">
-    </form> -->
   </div>    
 
   <div class="divider"></div>
