@@ -1,62 +1,46 @@
 <%- include('../partials/head') %>
 <body>
   <%- include('../partials/loggedInHeader') %>
-    <div class="container">
+  <div class="container">
     <h1>My Shelf</h1>
+
     <section class="greeting">
       <h2>Welcome, <%= user.userName[0].toUpperCase() + user.userName.slice(1)  %></h2>
       <h5>You currently reading <%= left %> <%= left === 1 ? 'book' : 'books' %>.</h5>
     </section>
     
+    <div class="divider"></div>
 
-  <div class="divider"></div>
-  <div class="">
-    
-    <h2>Reading</h2>
-    <section class="book-section">
-      <% books.forEach( el => { %>
-        <% if (el.completed===false){%>
-        <div class='bookItem' data-id='<%=el._id%>'>
-            <img src="<%= el.picture ? el.picture : '' %>" alt="">
-            <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.book %></span>
-            <span class='del'> Delete </span>
-        </div>
-      <% }}) %>  
+    <div class="">
+      <h2>Reading</h2>
+      <section class="book-section">
+        <% books.forEach( el => { %>
+          <% if (el.completed===false){%>
+          <div class='bookItem' data-id='<%=el._id%>' data-title="<%=el.book%>" data-authors="<%=el.author%>">
+              <img src="<%= el.picture ? el.picture : '' %>" alt="">
+              <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.book %></span>
+          </div>
+        <% }}) %>  
+      </section>
+    </div>    
 
-    </section>
-    <ul>
-      <!--       After updating the controller, the variable for this section should be booksUnread; can set class to 'not' w/o conditional logic -->
-  
-    </ul>
-  </div>    
+    <div class="divider"></div>
 
-  <div class="divider"></div>
-  <div class="">
-      
-  <h2>Completed</h2>
-  <section class="book-section">
-    <% books.forEach( el => { %>
-      <% if (el.completed===true){%>
-       <div class='bookItem' data-id='<%=el._id%>'>
-         <img src="<%= el.picture ? el.picture : '' %>" alt="">
-         <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.book %></span>
-         <span class='del'> Delete </span>
-       </div>
-     <%}})%>
-  </section> 
-
-
-
-
-
-      
-    
-     
+    <div class="">    
+      <h2>Completed</h2>
+      <section class="book-section">
+        <% books.forEach( el => { %>
+          <% if (el.completed===true){%>
+           <div class='bookItem' data-id='<%=el._id%>' data-title="<%=el.book%>" data-authors="<%=el.author%>">
+             <img src="<%= el.picture ? el.picture : '' %>" alt="">
+             <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.book %></span>
+           </div>
+        <%}})%>
+      </section> 
+    </div>
   </div>
-
-
    
-
-    <script src="js/main.js"></script>
+  <%- include('../partials/bookEditModal') %>
+  <script src="js/main.js"></script>
 </body>
 </html>

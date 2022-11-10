@@ -14,6 +14,8 @@ const modalScreenInput = document.querySelector('.modal-screen.input')
 const addToLibraryButton = document.querySelector('#add-button')
 const manuelAddSection = document.querySelector('.manuel-add')
 const addNewButton = document.querySelector('.add-new-book')
+const bookItems = document.querySelectorAll('.bookItem')
+const updateButton = document.querySelectorAll('.update-book')
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteBook)
@@ -31,20 +33,34 @@ Array.from(selectBook).forEach((el)=>{
   el.addEventListener('click', addBook)
 })
 
-let timeout;
-search.addEventListener('input', () => {
-  //displays results 500 milliseconds after input has stopped coming in
-  if (timeout) clearTimeout(timeout); 
-  timeout = setTimeout(async () => await searchBooks(search.value), 500); 
-})
-
 modalCloseButton.forEach(button => {
   button.addEventListener('click', closeModal);
 })
 
-addToLibraryButton.addEventListener('click', addBook)
+updateButton.forEach(button => {
+  button.addEventListener('click', updateBook)
+})
 
-addNewButton.addEventListener('click', openModal)
+bookItems.forEach( book => {
+  book.addEventListener('click', openModal)
+})
+
+let timeout;
+if (search) {
+  search.addEventListener('input', () => {
+    //displays results 500 milliseconds after input has stopped coming in
+    if (timeout) clearTimeout(timeout); 
+    timeout = setTimeout(async () => await searchBooks(search.value), 500); 
+  })
+}
+
+if (addToLibraryButton) {
+  addToLibraryButton.addEventListener('click', addBook)
+}
+
+if (addNewButton) {
+  addNewButton.addEventListener('click', openModal)
+}
 
 async function deleteBook(){
   console.log('Event listener is working!')
@@ -64,42 +80,33 @@ async function deleteBook(){
         console.log(err)
     }
 }
+async function updateBook () {
+  const bookStatus = document.querySelector("#status-select").value;
+  const bookId = this.parentNode.parentNode.dataset.id;
+  console.log(bookId, bookStatus)
+  if (!bookStatus) {
+    document.querySelector('.error-message').innerText = "Please choose a status";
+    return;
+  }
 
-async function markComplete(){
-    const bookId = this.parentNode.dataset.id
-    try{
-        const response = await fetch('books/markComplete', {
-            method: 'put',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                'bookIdFromJSFile': bookId
-            })
+  const route = bookStatus === 'reading' ? 'books/markIncomplete' : 'books/markComplete';
+  
+  try{
+    const response = await fetch(route, {
+        method: 'put',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify({
+            'bookIdFromJSFile': bookId
         })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-    }catch(err){
-        console.log(err)
-    }
+    })
+    const data = await response.json()
+    console.log(data)
+    location.reload()
+  }catch(err){
+      console.log(err)
+  }
 }
 
-async function markIncomplete(){
-    const bookId = this.parentNode.dataset.id
-    try{
-        const response = await fetch('books/markIncomplete', {
-            method: 'put',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                'bookIdFromJSFile': bookId
-            })
-        })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-    }catch(err){
-        console.log(err)
-    }
-}
 async function addBook() {
   //collection book information
   let bookName = modalTitle.innerText.trim();
@@ -157,18 +164,6 @@ const searchBooks = async searchText => {
   console.log(matches)
 }
 
-// let searchResultBooks = {}
-// storeSearchResults(matches) {
-//   matches.forEach(match => 
-//     //stores search result info in an object
-//     searchResultBooks[uniqueIdentifier, maybe match.cover_edition_key] = {
-//       title: match.title,
-//       author: match.
-//       imageLink: `https://covers.openlibrary.org/b/olid/${match.cover_edition_key}.jpg`
-//     }
-//   )
-// }
-
 const outputHtml = matches => {
   console.log('We have matches!')
   if (matches.length > 0) {
@@ -189,6 +184,7 @@ const outputHtml = matches => {
 
     matchList.innerHTML = html;
     addListenerToOptions(matchList);
+    //uncover section to manually add books to library
     manuelAddSection.classList.remove('hidden')
     
   }
@@ -199,12 +195,15 @@ const addListenerToOptions = (matchList) => {
 }
 
 function openModal() {
-  if (this.classList.contains('search-result')) {
+  //if book on shelf or book in discover is clicked (both use the info modal class and format)
+  if (this.classList.contains('search-result') || this.classList.contains('bookItem')) {
     //add values
   modalImg.src = this.querySelector('img').src;
   modalTitle.innerText = this.dataset.title;
   modalAuthors.innerText = this.dataset.authors;
   console.log(this, 'has been clicked!');
+  //set id on modal so it can be passed with a request
+  modalScreenInfo.firstElementChild.setAttribute('data-id', this.dataset.id)
   //unhide info modal
   modalScreenInfo.classList.remove('hidden');
 
