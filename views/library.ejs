@@ -1,0 +1,21 @@
+<%- include('../partials/head') %>
+<body>
+    <%- include('../partials/loggedInHeader') %>
+    <div class="container">
+        <h1>My Books</h1>
+        <section class="library-section">
+            <% for (let i = 0; i < books.length; i++) { %>
+               <div class='bookItem' data-id='<%=books[i]._id%>' data-title="<%=books[i].book%>" data-authors="<%=books[i].author%>">
+                 <img src="<%= books[i].picture ? books[i].picture : '' %>" alt="">
+                 <span class=''><%= books[i].book %></span>
+                 <span><%= books[i].author[0] %></span>
+               </div>
+            <%}%> 
+        </section>
+    </div>
+
+    <%- include('../partials/bookEditModal') %>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
