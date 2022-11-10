@@ -180,7 +180,7 @@ const outputHtml = matches => {
         <div>
           <h4>${match.title}</h4>
           <span>
-            ${match.author_name ? match.author_name : 'N/A'}
+            ${match.author_name ? match.author_name.length > 1 ? match.author_name[0] + ', and others' : match.author_name[0] : 'N/A'}
           </span>
         </div>
       </div>
