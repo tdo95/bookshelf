@@ -133,11 +133,22 @@ ul{
 .bookItem {
   display: flex;
   flex-direction: column;
+  justify-content: end;
   width: 150px;
-  border: black solid 1px;
+  transition: 1s transform;
+  /* border: black solid 1px; */
 }
 .bookItem img {
   max-width: 150px;
+}
+.bookItem:hover {
+  transform: translateY(-20px);
+}
+@keyframes slideUp {
+  100% {
+    transform: translateY(-20px);
+  }
+  
 }
 
 /* Text */
