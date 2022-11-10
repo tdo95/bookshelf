@@ -14,13 +14,13 @@
     <div class="">
       <h2>Reading</h2>
       <section class="book-section">
-        <% books.forEach( el => { %>
-          <% if (el.completed===false){%>
-          <div class='bookItem' data-id='<%=el._id%>' data-title="<%=el.book%>" data-authors="<%=el.author%>">
-              <img src="<%= el.picture ? el.picture : '' %>" alt="">
-              <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.book %></span>
-          </div>
-        <% }}) %>  
+        <% for (let i = 0; i < 8; i++) { %>
+          <% if (books[i].completed===false){%>
+           <div class='bookItem' data-id='<%=books[i]._id%>' data-title="<%=books[i].book%>" data-authors="<%=books[i].author%>">
+             <img src="<%= books[i].picture ? books[i].picture : '' %>" alt="">
+             <span class='<%= books[i].completed === true ? 'completed' : 'not'%>'><%= books[i].book %></span>
+           </div>
+        <%}}%> 
       </section>
     </div>    
 
@@ -29,13 +29,13 @@
     <div class="">    
       <h2>Completed</h2>
       <section class="book-section">
-        <% books.forEach( el => { %>
-          <% if (el.completed===true){%>
-           <div class='bookItem' data-id='<%=el._id%>' data-title="<%=el.book%>" data-authors="<%=el.author%>">
-             <img src="<%= el.picture ? el.picture : '' %>" alt="">
-             <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.book %></span>
+        <% for (let i = 0; i < 8; i++) { %>
+          <% if (books[i].completed===true){%>
+           <div class='bookItem' data-id='<%=books[i]._id%>' data-title="<%=books[i].book%>" data-authors="<%=books[i].author%>">
+             <img src="<%= books[i].picture ? books[i].picture : '' %>" alt="">
+             <span class='<%= books[i].completed === true ? 'completed' : 'not'%>'><%= books[i].book %></span>
            </div>
-        <%}})%>
+        <%}}%>
       </section> 
     </div>
   </div>
