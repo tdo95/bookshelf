@@ -16,7 +16,7 @@
       <section class="book-section">
         <% for (let i = 0; i < 8; i++) { %>
           <% if (books[i].completed===false){%>
-           <div class='bookItem' data-id='<%=books[i]._id%>' data-title="<%=books[i].book%>" data-authors="<%=books[i].author%>">
+           <div class='bookItem bookHover' data-id='<%=books[i]._id%>' data-title="<%=books[i].book%>" data-authors="<%=books[i].author%>">
              <img src="<%= books[i].picture ? books[i].picture : '' %>" alt="">
              <span class='<%= books[i].completed === true ? 'completed' : 'not'%>'><%= books[i].book %></span>
            </div>
@@ -31,7 +31,7 @@
       <section class="book-section">
         <% for (let i = 0; i < 8; i++) { %>
           <% if (books[i].completed===true){%>
-           <div class='bookItem' data-id='<%=books[i]._id%>' data-title="<%=books[i].book%>" data-authors="<%=books[i].author%>">
+           <div class='bookItem bookHover' data-id='<%=books[i]._id%>' data-title="<%=books[i].book%>" data-authors="<%=books[i].author%>">
              <img src="<%= books[i].picture ? books[i].picture : '' %>" alt="">
              <span class='<%= books[i].completed === true ? 'completed' : 'not'%>'><%= books[i].book %></span>
            </div>
