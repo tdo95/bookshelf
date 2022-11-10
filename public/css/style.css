@@ -112,7 +112,7 @@ ul{
   right: 0;
 }
 
-/* Bookshelf Page */
+/* Bookshelf Home Page */
 
 .greeting {
   display: flex;
@@ -135,15 +135,28 @@ ul{
   flex-direction: column;
   justify-content: end;
   width: 150px;
-  transition: 1s transform;
   /* border: black solid 1px; */
 }
 .bookItem img {
   max-width: 150px;
 }
-.bookItem:hover {
+.bookHover {
+  transition: .5s transform;
+}
+.bookHover:hover {
   transform: translateY(-20px);
 }
+
+/* Library Page */
+.library-section {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  column-gap: 15px;
+
+}
+/* used to override hover animation for books with  */
+.no-hover
 
 /* Text */
 
