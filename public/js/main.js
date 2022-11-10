@@ -1,6 +1,4 @@
 const deleteBtn = document.querySelectorAll('.del')
-const bookItem = document.querySelectorAll('span.not')
-const bookComplete = document.querySelectorAll('span.completed')
 const search = document.getElementById('search')
 const matchList = document.getElementById('match-list')
 const searchResult = document.querySelectorAll('.search-result')
@@ -19,14 +17,6 @@ const updateButton = document.querySelectorAll('.update-book')
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteBook)
-})
-
-Array.from(bookItem).forEach((el)=>{
-    el.addEventListener('click', markComplete)
-})
-
-Array.from(bookComplete).forEach((el)=>{
-    el.addEventListener('click', markIncomplete)
 })
 
 Array.from(selectBook).forEach((el)=>{
