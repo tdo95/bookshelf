@@ -144,12 +144,6 @@ ul{
 .bookItem:hover {
   transform: translateY(-20px);
 }
-@keyframes slideUp {
-  100% {
-    transform: translateY(-20px);
-  }
-  
-}
 
 /* Text */
 
